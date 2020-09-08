@@ -5,9 +5,10 @@ using System.Text;
 
 namespace Tracer
 {
+    [Serializable]
     public class MethodTracer
     {
-        public TimeSpan ElapsedTime { get; private set; }
+        public double ElapsedTime { get; private set; }
         public string MethodName { get; private set; }
         public string ClassName { get; private set; }
         public List<MethodTracer> Methods { get; internal set; }
@@ -18,7 +19,6 @@ namespace Tracer
         {
             ClassName = className;
             MethodName = methodName;
-            ElapsedTime = new TimeSpan(0);
             Methods = new List<MethodTracer>();
             stopwatch = new Stopwatch();
         }
@@ -44,7 +44,7 @@ namespace Tracer
         internal void StopTrace()
         {
             stopwatch.Stop();
-            ElapsedTime = stopwatch.Elapsed;
+            ElapsedTime = stopwatch.Elapsed.TotalMilliseconds;
         }
     }
 }

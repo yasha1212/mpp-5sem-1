@@ -4,10 +4,11 @@ using System.Text;
 
 namespace Tracer
 {
+    [Serializable]
     public class ThreadTracer
     {
         public int Id { get; private set; }
-        public TimeSpan TotalElapsedTime { get; private set; }
+        public double TotalElapsedTime { get; private set; }
         public List<MethodTracer> Methods { get; private set; }
 
         private Stack<MethodTracer> methodsStack; 
@@ -15,7 +16,6 @@ namespace Tracer
         public ThreadTracer(int id)
         {
             Id = id;
-            TotalElapsedTime = new TimeSpan(0);
             Methods = new List<MethodTracer>();
             methodsStack = new Stack<MethodTracer>();
         }

@@ -5,6 +5,7 @@ using System.Threading;
 
 namespace Tracer
 {
+    [Serializable]
     public class TraceResult
     {
         public List<ThreadTracer> Threads { get; private set; }
