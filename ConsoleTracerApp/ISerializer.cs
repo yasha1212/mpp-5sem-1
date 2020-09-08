@@ -8,6 +8,6 @@ namespace ConsoleTracerApp
 {
     public interface ISerializer
     {
-        string Serialize(TraceResult traceResult);
+        void Serialize(TextWriter writer, TraceResult traceResult);
     }
 }

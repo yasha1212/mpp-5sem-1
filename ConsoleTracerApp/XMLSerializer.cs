@@ -11,10 +11,10 @@ namespace ConsoleTracerApp
 {
     public class XMLSerializer : ISerializer
     {
-        public string Serialize(TraceResult traceResult)
+        public void Serialize(TextWriter writer, TraceResult traceResult)
         {
-            return new XDocument( new XElement("root",
-                from thread in traceResult.Threads select SerializeThreadInfo(thread))).ToString();
+            writer.WriteLine( new XDocument( new XElement("root",
+                from thread in traceResult.Threads select SerializeThreadInfo(thread))).ToString());
         }
 
         private XElement SerializeThreadInfo(ThreadTracer thread)

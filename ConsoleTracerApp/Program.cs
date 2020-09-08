@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading;
 using Tracer;
 
@@ -52,11 +53,25 @@ namespace ConsoleTracerApp
             thread2.Join();
 
             serializer = new JSONSerializer();
-            Console.WriteLine(serializer.Serialize(tracer.GetTraceResult()));
+
+            using (var fs = new FileStream("test.json", FileMode.Create))
+            using (var sw = new StreamWriter(fs))
+            {
+                serializer.Serialize(sw, tracer.GetTraceResult());
+            }
+
+            serializer.Serialize(Console.Out, tracer.GetTraceResult());
             Console.WriteLine();
 
             serializer = new XMLSerializer();
-            Console.WriteLine(serializer.Serialize(tracer.GetTraceResult()));
+
+            using (var fs = new FileStream("test.xml", FileMode.Create))
+            using (var sw = new StreamWriter(fs))
+            {
+                serializer.Serialize(sw, tracer.GetTraceResult());
+            }
+
+            serializer.Serialize(Console.Out, tracer.GetTraceResult());
 
             Console.ReadKey();
         }
