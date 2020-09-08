@@ -7,15 +7,15 @@ namespace Tracer
 {
     public class TraceResult
     {
-        public Dictionary<int, ThreadTracer> Threads { get; private set; }
+        public List<ThreadTracer> Threads { get; private set; }
 
         public TraceResult(Dictionary<int, ThreadTracer> threads)
         {
-            Threads = new Dictionary<int, ThreadTracer>();
+            Threads = new List<ThreadTracer>();
 
             foreach (var thread in threads)
             {
-                Threads.Add(thread.Key, thread.Value.GetTraceResult());
+                Threads.Add(thread.Value.GetTraceResult());
             }
         }
     }
