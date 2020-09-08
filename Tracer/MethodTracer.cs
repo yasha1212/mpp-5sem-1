@@ -2,15 +2,22 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Tracer
 {
-    [Serializable]
     public class MethodTracer
     {
-        public double ElapsedTime { get; private set; }
+        [JsonPropertyName("name")]
         public string MethodName { get; private set; }
+
+        [JsonPropertyName("class")]
         public string ClassName { get; private set; }
+
+        [JsonPropertyName("time")]
+        public double ElapsedTime { get; private set; }
+
+        [JsonPropertyName("methods")]
         public List<MethodTracer> Methods { get; internal set; }
 
         private Stopwatch stopwatch;

@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading;
+using System.Text.Json.Serialization;
 
 namespace Tracer
 {
-    [Serializable]
     public class TraceResult
     {
+        [JsonPropertyName("threads")]
         public List<ThreadTracer> Threads { get; private set; }
 
         public TraceResult(Dictionary<int, ThreadTracer> threads)

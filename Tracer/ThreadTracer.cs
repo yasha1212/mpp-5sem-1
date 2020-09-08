@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Tracer
 {
-    [Serializable]
     public class ThreadTracer
     {
+        [JsonPropertyName("id")]
         public int Id { get; private set; }
+
+        [JsonPropertyName("time")]
         public double TotalElapsedTime { get; private set; }
+
+        [JsonPropertyName("methods")]
         public List<MethodTracer> Methods { get; private set; }
 
         private Stack<MethodTracer> methodsStack; 
