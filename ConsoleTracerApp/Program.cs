@@ -7,7 +7,7 @@ namespace ConsoleTracerApp
     class Program
     {
         private static TimeTracer tracer = new TimeTracer();
-        private static JSONSerializer serializer = new JSONSerializer();
+        private static ISerializer serializer;
 
         static void Method1()
         {
@@ -51,7 +51,13 @@ namespace ConsoleTracerApp
             thread1.Join();
             thread2.Join();
 
+            serializer = new JSONSerializer();
             Console.WriteLine(serializer.Serialize(tracer.GetTraceResult()));
+            Console.WriteLine();
+
+            serializer = new XMLSerializer();
+            Console.WriteLine(serializer.Serialize(tracer.GetTraceResult()));
+
             Console.ReadKey();
         }
     }
